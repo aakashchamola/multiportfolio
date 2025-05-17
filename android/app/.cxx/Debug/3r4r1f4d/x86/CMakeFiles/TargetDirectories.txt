@@ -1,0 +1,2 @@
+/Users/aakashchamola/Documents/projects/multiportfolio/android/app/.cxx/Debug/3r4r1f4d/x86/CMakeFiles/edit_cache.dir
+/Users/aakashchamola/Documents/projects/multiportfolio/android/app/.cxx/Debug/3r4r1f4d/x86/CMakeFiles/rebuild_cache.dir

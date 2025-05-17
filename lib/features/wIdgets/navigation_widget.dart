@@ -70,15 +70,63 @@ class NavigationWidget extends StatelessWidget {
     return BottomNavigationBar(
       currentIndex: selectedIndex,
       onTap: onItemSelected,
+      backgroundColor: Colors.white,
+      selectedItemColor: Colors.deepPurple,
+      unselectedItemColor: Colors.grey.shade600,
+      selectedFontSize: 14,
+      unselectedFontSize: 12,
+      type: BottomNavigationBarType.fixed,
+      elevation: 10,
       items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        BottomNavigationBarItem(icon: Icon(Icons.work), label: 'Experience'),
-        BottomNavigationBarItem(icon: Icon(Icons.school), label: 'Education'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.badge), label: 'Certification'),
-        BottomNavigationBarItem(icon: Icon(Icons.star), label: 'Skills'),
-        BottomNavigationBarItem(icon: Icon(Icons.folder), label: 'Projects'),
+          icon: Padding(
+            padding: EdgeInsets.symmetric(vertical: 4.0),
+            child: Icon(Icons.home, size: 28),
+          ),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Padding(
+            padding: EdgeInsets.symmetric(vertical: 4.0),
+            child: Icon(Icons.person, size: 28),
+          ),
+          label: 'Profile',
+        ),
+        BottomNavigationBarItem(
+          icon: Padding(
+            padding: EdgeInsets.symmetric(vertical: 4.0),
+            child: Icon(Icons.work, size: 28),
+          ),
+          label: 'Experience',
+        ),
+        BottomNavigationBarItem(
+          icon: Padding(
+            padding: EdgeInsets.symmetric(vertical: 4.0),
+            child: Icon(Icons.school, size: 28),
+          ),
+          label: 'Education',
+        ),
+        BottomNavigationBarItem(
+          icon: Padding(
+            padding: EdgeInsets.symmetric(vertical: 4.0),
+            child: Icon(Icons.badge, size: 28),
+          ),
+          label: 'Certs',
+        ),
+        BottomNavigationBarItem(
+          icon: Padding(
+            padding: EdgeInsets.symmetric(vertical: 4.0),
+            child: Icon(Icons.star, size: 28),
+          ),
+          label: 'Skills',
+        ),
+        BottomNavigationBarItem(
+          icon: Padding(
+            padding: EdgeInsets.symmetric(vertical: 4.0),
+            child: Icon(Icons.folder, size: 28),
+          ),
+          label: 'Projects',
+        ),
       ],
     );
   }

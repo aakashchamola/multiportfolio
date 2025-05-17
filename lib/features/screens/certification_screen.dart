@@ -88,7 +88,7 @@ class CertificationScreen extends StatelessWidget {
               children: certification.skills
                   .map((skill) => Chip(
                         label: Text(skill),
-                        backgroundColor: Colors.blueAccent.withOpacity(0.1),
+                        backgroundColor: Colors.blueAccent,
                       ))
                   .toList(),
             ),
