@@ -1,12 +1,10 @@
+// main.dart
 import 'package:flutter/material.dart';
-import 'package:multiportfolio/firebase_options.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:get/get.dart';
+import 'package:multiportfolio/core/routes/app_routes.dart';
+import 'package:flutter/foundation.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+void main() {
   runApp(const MyApp());
 }
 
@@ -15,13 +13,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Portfolio',
+    return GetMaterialApp(
+      title: 'Multi-Platform Portfolio',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const Placeholder(),
+          primarySwatch: Colors.blue, platform: defaultTargetPlatform),
+      initialRoute: Routes.home,
+      getPages: AppRoutes.routes,
     );
   }
 }
