@@ -6,6 +6,8 @@ import 'package:multiportfolio/features/models/profile_model.dart';
 import 'package:multiportfolio/features/models/project_model.dart';
 
 class Portfolio {
+  final String title;
+  final String message;
   final Profile profile;
   final List<Experience> experience;
   final List<Education> education;
@@ -15,6 +17,8 @@ class Portfolio {
   final List<Project> projects;
 
   Portfolio({
+    required this.title,
+    required this.message,
     required this.profile,
     required this.experience,
     required this.education,
@@ -26,6 +30,8 @@ class Portfolio {
 
   factory Portfolio.fromJson(Map<String, dynamic> json) {
     return Portfolio(
+      title: json['title'] ?? "",
+      message: json['message'] ?? "",
       profile: Profile.fromJson(json['profile']),
       experience: List<Experience>.from(
         json['experience']?.map((e) => Experience.fromJson(e)) ?? [],

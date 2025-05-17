@@ -9,6 +9,27 @@ class FirebaseRemoteService {
       FirebaseRemoteService._internal();
   late FirebaseRemoteConfig _remoteConfig;
 
+  final ValueNotifier<Portfolio> portfolioNotifier = ValueNotifier<Portfolio>(
+    Portfolio(
+      profile: Profile(
+        name: '',
+        title: '',
+        image: '',
+        contact: Contact(
+            address: '', email: '', phone: '', linkedin: '', github: ''),
+        summary: '',
+      ),
+      experience: [],
+      education: [],
+      skills: [],
+      certifications: [],
+      achievements: [],
+      projects: [],
+      title: '',
+      message: '',
+    ),
+  );
+
   factory FirebaseRemoteService() {
     return _instance;
   }
@@ -21,11 +42,11 @@ class FirebaseRemoteService {
     try {
       await _remoteConfig.setConfigSettings(RemoteConfigSettings(
         fetchTimeout: const Duration(seconds: 10),
-        minimumFetchInterval: const Duration(hours: 1),
+        minimumFetchInterval: const Duration(seconds: 10), // For testing
       ));
 
       await _remoteConfig.ensureInitialized();
-      await fetchData();
+      await fetchData(); // Fetch data immediately after initialization
     } catch (e) {
       debugPrint("Firebase Initialization Error: $e");
     }
@@ -34,36 +55,18 @@ class FirebaseRemoteService {
   Future<void> fetchData() async {
     try {
       await _remoteConfig.fetchAndActivate();
-      debugPrint("Firebase Remote Config data fetched and activated.");
+      String data = _remoteConfig.getString('portfolio');
+      if (data.isNotEmpty) {
+        Map<String, dynamic> jsonData = json.decode(data);
+        Portfolio portfolio = Portfolio.fromJson(jsonData);
+        portfolioNotifier.value = portfolio;
+      }
     } catch (e) {
       debugPrint("Error fetching data: $e");
     }
   }
 
-  Portfolio getPortfolioData() {
-    try {
-      String data = _remoteConfig.getString('portfolio_data');
-      if (data.isNotEmpty) {
-        Map<String, dynamic> jsonData = json.decode(data);
-        return Portfolio.fromJson(jsonData);
-      }
-    } catch (e) {
-      debugPrint("Error parsing portfolio data: $e");
-    }
-    // Return empty data if parsing fails
-    return Portfolio(
-      profile: Profile(
-        name: '',
-        title: '',
-        contact: Contact(address: '', email: '', phone: '', linkedin: ''),
-        summary: '',
-      ),
-      experience: [],
-      education: [],
-      skills: [],
-      certifications: [],
-      achievements: [],
-      projects: [],
-    );
+  ValueNotifier<Portfolio> getPortfolioNotifier() {
+    return portfolioNotifier;
   }
 }

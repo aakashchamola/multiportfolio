@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:get/get.dart';
 import 'package:multiportfolio/core/utils/constants.dart';
+import 'package:multiportfolio/features/controllers/portfolio_controller.dart';
+import 'package:multiportfolio/features/models/portfolio_model.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -8,6 +11,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double padding = Sizing.adaptivePadding(context);
+    final controller = Get.find<PortfolioController>();
+    Portfolio portfolio = controller.portfolioData.value!;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -26,7 +31,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 children: [
                   Text(
-                    'Welcome to My Portfolio',
+                    portfolio.title,
                     style: TextStyle(
                       fontSize: Sizing.isDesktop(context)
                           ? 48
@@ -39,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'I am Aakash Chamola, a Flutter Developer with expertise in cross-platform applications.',
+                    portfolio.message,
                     style: TextStyle(
                       fontSize: Sizing.isDesktop(context)
                           ? 24
