@@ -25,16 +25,28 @@ class NavigationWidget extends StatelessWidget {
   }
 
   Widget _buildSideNavigation(BuildContext context) {
-    return Drawer(
-      child: ListView(
+    return Container(
+      width: 250,
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.8),
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      padding: const EdgeInsets.symmetric(vertical: 24),
+      margin: const EdgeInsets.all(16),
+      child: Column(
         children: [
-          _navItem(context, 0, 'Home', Icons.home),
-          _navItem(context, 1, 'Profile', Icons.person),
-          _navItem(context, 2, 'Experience', Icons.work),
-          _navItem(context, 3, 'Education', Icons.school),
-          _navItem(context, 4, 'Certification', Icons.badge),
-          _navItem(context, 5, 'Skills', Icons.star),
-          _navItem(context, 6, 'Projects', Icons.folder),
+          ...List.generate(
+            7,
+            (index) =>
+                _navItem(context, index, _getLabel(index), _getIcon(index)),
+          ),
         ],
       ),
     );
@@ -50,15 +62,11 @@ class NavigationWidget extends StatelessWidget {
           ),
           Expanded(
             child: ListView(
-              children: [
-                _navItem(context, 0, 'Home', Icons.home),
-                _navItem(context, 1, 'Profile', Icons.person),
-                _navItem(context, 2, 'Experience', Icons.work),
-                _navItem(context, 3, 'Education', Icons.school),
-                _navItem(context, 4, 'Certification', Icons.badge),
-                _navItem(context, 5, 'Skills', Icons.star),
-                _navItem(context, 6, 'Projects', Icons.folder),
-              ],
+              children: List.generate(
+                7,
+                (index) =>
+                    _navItem(context, index, _getLabel(index), _getIcon(index)),
+              ),
             ),
           ),
         ],
@@ -143,12 +151,64 @@ class NavigationWidget extends StatelessWidget {
 
   Widget _navItem(
       BuildContext context, int index, String label, IconData icon) {
-    return ListTile(
-      selected: index == selectedIndex,
-      leading:
-          Icon(icon, color: index == selectedIndex ? Colors.blue : Colors.grey),
-      title: Text(label),
+    bool isSelected = index == selectedIndex;
+    return GestureDetector(
       onTap: () => onItemSelected(index),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        margin: const EdgeInsets.symmetric(vertical: 8),
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        decoration: BoxDecoration(
+          color: isSelected ? Colors.blue.withOpacity(0.2) : Colors.transparent,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              color: isSelected ? Colors.blue : Colors.grey,
+              size: 24,
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Text(
+                label,
+                style: TextStyle(
+                  color: isSelected ? Colors.blue : Colors.black87,
+                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
+  }
+
+  String _getLabel(int index) {
+    const labels = [
+      'Home',
+      'Profile',
+      'Experience',
+      'Education',
+      'Certification',
+      'Skills',
+      'Projects'
+    ];
+    return labels[index];
+  }
+
+  IconData _getIcon(int index) {
+    const icons = [
+      Icons.home,
+      Icons.person,
+      Icons.work,
+      Icons.school,
+      Icons.badge,
+      Icons.star,
+      Icons.folder,
+    ];
+    return icons[index];
   }
 }
