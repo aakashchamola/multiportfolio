@@ -34,8 +34,14 @@ class EducationScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Education'),
-        backgroundColor: Colors.blue,
+        title: const Text(
+          'Education',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.teal,
       ),
       body: Padding(
         padding: EdgeInsets.all(padding),

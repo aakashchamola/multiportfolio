@@ -15,8 +15,14 @@ class SkillsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Skills'),
-        backgroundColor: Colors.blue,
+        title: const Text(
+          'Skills',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.teal,
       ),
       body: Padding(
         padding: EdgeInsets.all(padding),
@@ -33,13 +39,15 @@ class SkillsScreen extends StatelessWidget {
                 return Chip(
                   label: Text(skill,
                       style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
                         fontSize: Sizing.isDesktop(context)
-                            ? 18
+                            ? 24
                             : Sizing.isTablet(context)
-                                ? 14
-                                : 12,
+                                ? 18
+                                : 16,
                       )),
-                  backgroundColor: Colors.blue.shade100,
+                  backgroundColor: const Color(0xFF02897C),
                 );
               }).toList(),
             ),

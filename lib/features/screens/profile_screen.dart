@@ -11,9 +11,7 @@ class ProfileScreen extends StatelessWidget {
     super.key,
   });
   void _launchURL(String url) async {
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url));
-    }
+    await launchUrl(Uri.parse(url));
   }
 
   @override
@@ -23,8 +21,14 @@ class ProfileScreen extends StatelessWidget {
     double padding = Sizing.adaptivePadding(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
-        backgroundColor: Colors.blue,
+        title: const Text(
+          'Profile',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.teal,
       ),
       body: Padding(
         padding: EdgeInsets.all(padding),
@@ -43,28 +47,28 @@ class ProfileScreen extends StatelessWidget {
                         ? Image.network(
                             profile.image,
                             width: Sizing.isDesktop(context)
-                                ? 150
+                                ? 160
                                 : Sizing.isTablet(context)
-                                    ? 120
-                                    : 100,
+                                    ? 130
+                                    : 120,
                             height: Sizing.isDesktop(context)
-                                ? 150
+                                ? 160
                                 : Sizing.isTablet(context)
-                                    ? 120
-                                    : 100,
+                                    ? 130
+                                    : 120,
                             fit: BoxFit.cover,
                           )
                         : Container(
                             width: Sizing.isDesktop(context)
-                                ? 150
+                                ? 160
                                 : Sizing.isTablet(context)
-                                    ? 120
-                                    : 100,
+                                    ? 130
+                                    : 120,
                             height: Sizing.isDesktop(context)
-                                ? 150
+                                ? 160
                                 : Sizing.isTablet(context)
-                                    ? 120
-                                    : 100,
+                                    ? 130
+                                    : 120,
                             color: Colors.grey.shade300,
                             child: const Icon(
                               Icons.person,
@@ -92,10 +96,10 @@ class ProfileScreen extends StatelessWidget {
                   profile.title,
                   style: TextStyle(
                     fontSize: Sizing.isDesktop(context)
-                        ? 24
+                        ? 26
                         : Sizing.isTablet(context)
-                            ? 18
-                            : 14,
+                            ? 20
+                            : 15,
                     color: Colors.black54,
                     fontStyle: FontStyle.italic,
                   ),
@@ -145,12 +149,13 @@ class ProfileScreen extends StatelessWidget {
     );
 
     TextStyle valueStyle = TextStyle(
+      fontWeight: FontWeight.bold,
       fontSize: Sizing.isDesktop(context)
-          ? 18
+          ? 24
           : Sizing.isTablet(context)
-              ? 14
-              : 12,
-      color: Colors.blue[700],
+              ? 18
+              : 14,
+      color: Colors.teal[700],
     );
 
     return Column(

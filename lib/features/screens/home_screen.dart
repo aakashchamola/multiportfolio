@@ -37,9 +37,9 @@ class HomeScreen extends StatelessWidget {
                           ? 48
                           : Sizing.isTablet(context)
                               ? 36
-                              : 24,
+                              : 28,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blue,
+                      color: Colors.teal,
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -49,8 +49,8 @@ class HomeScreen extends StatelessWidget {
                       fontSize: Sizing.isDesktop(context)
                           ? 24
                           : Sizing.isTablet(context)
-                              ? 18
-                              : 14,
+                              ? 20
+                              : 16,
                       color: Colors.black54,
                     ),
                   ),

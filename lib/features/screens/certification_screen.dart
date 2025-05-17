@@ -17,8 +17,14 @@ class CertificationScreen extends StatelessWidget {
         controller.portfolioData.value!.certifications;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Certifications'),
-        backgroundColor: Colors.blue,
+        title: const Text(
+          'Certifications',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.teal,
       ),
       body: Padding(
         padding: EdgeInsets.all(padding),
@@ -62,7 +68,7 @@ class CertificationScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: Sizing.isDesktop(context) ? 24 : 18,
                 fontWeight: FontWeight.bold,
-                color: Colors.blueAccent,
+                color: Colors.teal,
               ),
             ),
             const SizedBox(height: 4),
@@ -87,8 +93,14 @@ class CertificationScreen extends StatelessWidget {
               runSpacing: 4,
               children: certification.skills
                   .map((skill) => Chip(
-                        label: Text(skill),
-                        backgroundColor: Colors.blueAccent,
+                        label: Text(
+                          skill,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        backgroundColor: const Color(0xFF02897C),
                       ))
                   .toList(),
             ),

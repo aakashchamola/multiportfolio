@@ -66,12 +66,55 @@ class NavigationWidget extends StatelessWidget {
     );
   }
 
+  void _showMoreModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.school),
+              title: const Text('Education'),
+              onTap: () => {onItemSelected(3), Navigator.pop(context)},
+            ),
+            ListTile(
+              leading: const Icon(Icons.folder),
+              title: const Text('Projects'),
+              onTap: () => {onItemSelected(6), Navigator.pop(context)},
+            ),
+            ListTile(
+              leading: const Icon(Icons.badge),
+              title: const Text('Certifications'),
+              onTap: () => {onItemSelected(4), Navigator.pop(context)},
+            ),
+            ListTile(
+              leading: const Icon(Icons.star),
+              title: const Text('Skills'),
+              onTap: () => {onItemSelected(5), Navigator.pop(context)},
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildBottomNavigationBar(BuildContext context) {
     return BottomNavigationBar(
-      currentIndex: selectedIndex,
-      onTap: onItemSelected,
+      currentIndex: selectedIndex > 3 ? 3 : selectedIndex,
+      onTap: (index) {
+        if (index == 3) {
+          _showMoreModal(context);
+        } else if (index < 3) {
+          onItemSelected(index);
+        }
+      },
       backgroundColor: Colors.white,
-      selectedItemColor: Colors.deepPurple,
+      selectedItemColor: Colors.teal,
       unselectedItemColor: Colors.grey.shade600,
       selectedFontSize: 14,
       unselectedFontSize: 12,
@@ -79,53 +122,20 @@ class NavigationWidget extends StatelessWidget {
       elevation: 10,
       items: const [
         BottomNavigationBarItem(
-          icon: Padding(
-            padding: EdgeInsets.symmetric(vertical: 4.0),
-            child: Icon(Icons.home, size: 28),
-          ),
+          icon: Icon(Icons.home),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Padding(
-            padding: EdgeInsets.symmetric(vertical: 4.0),
-            child: Icon(Icons.person, size: 28),
-          ),
+          icon: Icon(Icons.person),
           label: 'Profile',
         ),
         BottomNavigationBarItem(
-          icon: Padding(
-            padding: EdgeInsets.symmetric(vertical: 4.0),
-            child: Icon(Icons.work, size: 28),
-          ),
+          icon: Icon(Icons.work),
           label: 'Experience',
         ),
         BottomNavigationBarItem(
-          icon: Padding(
-            padding: EdgeInsets.symmetric(vertical: 4.0),
-            child: Icon(Icons.school, size: 28),
-          ),
-          label: 'Education',
-        ),
-        BottomNavigationBarItem(
-          icon: Padding(
-            padding: EdgeInsets.symmetric(vertical: 4.0),
-            child: Icon(Icons.badge, size: 28),
-          ),
-          label: 'Certs',
-        ),
-        BottomNavigationBarItem(
-          icon: Padding(
-            padding: EdgeInsets.symmetric(vertical: 4.0),
-            child: Icon(Icons.star, size: 28),
-          ),
-          label: 'Skills',
-        ),
-        BottomNavigationBarItem(
-          icon: Padding(
-            padding: EdgeInsets.symmetric(vertical: 4.0),
-            child: Icon(Icons.folder, size: 28),
-          ),
-          label: 'Projects',
+          icon: Icon(Icons.more_horiz),
+          label: 'More',
         ),
       ],
     );

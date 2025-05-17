@@ -18,8 +18,14 @@ class ExperienceScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Experience'),
-        backgroundColor: Colors.blue,
+        title: const Text(
+          'Experience',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.teal,
       ),
       body: Padding(
         padding: EdgeInsets.all(padding),

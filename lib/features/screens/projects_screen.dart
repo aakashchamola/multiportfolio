@@ -10,9 +10,7 @@ class ProjectsScreen extends StatelessWidget {
   const ProjectsScreen({super.key});
 
   void _launchURL(String url) async {
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url));
-    }
+    await launchUrl(Uri.parse(url));
   }
 
   @override
@@ -39,8 +37,14 @@ class ProjectsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Projects'),
-        backgroundColor: Colors.blue,
+        title: const Text(
+          'Projects',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.teal,
       ),
       body: Padding(
         padding: EdgeInsets.all(padding),
