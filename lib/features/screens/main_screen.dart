@@ -37,10 +37,13 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isMobileApp = Sizing.isMobileApp();
+    bool isMobile = Sizing.isMobile(context);
+
     return Scaffold(
       body: Row(
         children: [
-          if (Sizing.isDesktop(context) || Sizing.isWeb())
+          if (!isMobile || (Sizing.isDesktop(context) && !isMobileApp))
             NavigationWidget(
               selectedIndex: _selectedIndex,
               onItemSelected: _onNavTap,
@@ -48,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
           Expanded(child: _screens[_selectedIndex]),
         ],
       ),
-      bottomNavigationBar: Sizing.isMobile(context)
+      bottomNavigationBar: (isMobile || isMobileApp)
           ? NavigationWidget(
               selectedIndex: _selectedIndex,
               onItemSelected: _onNavTap,

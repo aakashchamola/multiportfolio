@@ -15,13 +15,22 @@ class NavigationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (Sizing.isDesktop(context) || Sizing.isWeb()) {
-      return _buildSideNavigation(context);
-    } else if (Sizing.isTablet(context)) {
-      return _buildCollapsibleDrawer(context);
-    } else {
+    bool isMobileApp = Sizing.isMobileApp();
+    bool isMobile = Sizing.isMobile(context);
+    bool isTablet = Sizing.isTablet(context);
+    bool isDesktop = Sizing.isDesktop(context);
+
+    if (isMobileApp) {
       return _buildBottomNavigationBar(context);
+    } else if (isMobile) {
+      return _buildBottomNavigationBar(context);
+    } else if (isTablet) {
+      return _buildCollapsibleDrawer(context);
+    } else if (isDesktop) {
+      return _buildSideNavigation(context);
     }
+
+    return _buildBottomNavigationBar(context);
   }
 
   Widget _buildSideNavigation(BuildContext context) {
